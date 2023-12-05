@@ -2494,132 +2494,132 @@ document
 //#endregion ===========================================================================================
 
 //#region ========================================Load/Save Circuit===========================================
-let jsonData = "";
-function loadCktFromDataBase() {
-  const HTMLJsonData = document
-    .getElementById("jsonCktData")
-    .getAttribute("jsonData");
-  if (!HTMLJsonData) {
-    return;
-  }
-  const jsonData = JSON.parse(HTMLJsonData);
+// let jsonData = "";
+// function loadCktFromDataBase() {
+//   const HTMLJsonData = document
+//     .getElementById("jsonCktData")
+//     .getAttribute("jsonData");
+//   if (!HTMLJsonData) {
+//     return;
+//   }
+//   const jsonData = JSON.parse(HTMLJsonData);
 
-  loadCkt(jsonData);
-}
+//   loadCkt(jsonData);
+// }
 
-function loadCkt(json) {
-  if (typeof json == "string") {
-    jsonData = JSON.parse(jsonData);
-  }
-  const components = json.components;
-  const frequencies = json.frequencies;
+// function loadCkt(json) {
+//   if (typeof json == "string") {
+//     jsonData = JSON.parse(jsonData);
+//   }
+//   const components = json.components;
+//   const frequencies = json.frequencies;
 
-  function loadComponent(component) {
-    let designSpaceComponent = 0;
-    if (component.id == "sourceBlock") {
-      designSpaceComponent = document.getElementById("designSpace").firstChild;
-    } else if (component.id == "loadBlock") {
-      designSpaceComponent = document.getElementById("designSpace").lastChild;
-    } else {
-      copyComponentToDesignSpace(componentBankDict.get(component.id));
-      designSpaceComponent = document.getElementById("designSpace").children[2];
-    }
-    const designSpaceInputs =
-      designSpaceComponent.getElementsByTagName("input");
-    for (let i = 0; i < designSpaceInputs.length; i++) {
-      const designSpaceInput = designSpaceInputs[i];
-      designSpaceInput.value = component.values[i];
-    }
-    const designSpaceUnits =
-      designSpaceComponent.getElementsByTagName("select");
-    for (let i = 0; i < designSpaceInputs.length; i++) {
-      const designSpaceUnit = designSpaceUnits[i];
-      designSpaceUnit.value = component.units[i];
-    }
-  }
-  function loadComponents(components) {
-    for (let i = 0; i < components.length; i++) {
-      loadComponent(components[i]);
-    }
-  }
-  loadComponents(components);
-  function loadFrequencies() {
-    const savedFrequencies = json.frequencies;
-    const frequencyBank = document.getElementById("frequencyBank");
-    frequencyBank.innerHTML = "";
+//   function loadComponent(component) {
+//     let designSpaceComponent = 0;
+//     if (component.id == "sourceBlock") {
+//       designSpaceComponent = document.getElementById("designSpace").firstChild;
+//     } else if (component.id == "loadBlock") {
+//       designSpaceComponent = document.getElementById("designSpace").lastChild;
+//     } else {
+//       copyComponentToDesignSpace(componentBankDict.get(component.id));
+//       designSpaceComponent = document.getElementById("designSpace").children[2];
+//     }
+//     const designSpaceInputs =
+//       designSpaceComponent.getElementsByTagName("input");
+//     for (let i = 0; i < designSpaceInputs.length; i++) {
+//       const designSpaceInput = designSpaceInputs[i];
+//       designSpaceInput.value = component.values[i];
+//     }
+//     const designSpaceUnits =
+//       designSpaceComponent.getElementsByTagName("select");
+//     for (let i = 0; i < designSpaceInputs.length; i++) {
+//       const designSpaceUnit = designSpaceUnits[i];
+//       designSpaceUnit.value = component.units[i];
+//     }
+//   }
+//   function loadComponents(components) {
+//     for (let i = 0; i < components.length; i++) {
+//       loadComponent(components[i]);
+//     }
+//   }
+//   loadComponents(components);
+//   function loadFrequencies() {
+//     const savedFrequencies = json.frequencies;
+//     const frequencyBank = document.getElementById("frequencyBank");
+//     frequencyBank.innerHTML = "";
 
-    for (let i = 0; i < savedFrequencies.length; i++) {
-      addFrequency();
-      const frequencyBankInput =
-        frequencyBank.getElementsByClassName("frequency")[i];
-      const frequencyBankUnit =
-        frequencyBank.getElementsByClassName("units")[i];
-      frequencyBankInput.value = savedFrequencies[i].value;
-      frequencyBankUnit.value = savedFrequencies[i].unit;
-      // console.log(savedFrequencies[i].value);
-    }
-  }
-  loadFrequencies();
-  refresh();
-}
+//     for (let i = 0; i < savedFrequencies.length; i++) {
+//       addFrequency();
+//       const frequencyBankInput =
+//         frequencyBank.getElementsByClassName("frequency")[i];
+//       const frequencyBankUnit =
+//         frequencyBank.getElementsByClassName("units")[i];
+//       frequencyBankInput.value = savedFrequencies[i].value;
+//       frequencyBankUnit.value = savedFrequencies[i].unit;
+//       // console.log(savedFrequencies[i].value);
+//     }
+//   }
+//   loadFrequencies();
+//   refresh();
+// }
 
-function generateCktJson() {
-  const designSpaceComponents = document.getElementById("designSpace").children;
-  let cktJson = {};
-  let components = [];
-  let frequencies = [];
-  cktJson.components = components;
-  cktJson.frequencies = frequencies;
+// function generateCktJson() {
+//   const designSpaceComponents = document.getElementById("designSpace").children;
+//   let cktJson = {};
+//   let components = [];
+//   let frequencies = [];
+//   cktJson.components = components;
+//   cktJson.frequencies = frequencies;
 
-  function addDesignSpaceComponent(designSpaceComponent) {
-    let jsonComponent = {};
-    jsonComponent.id = designSpaceComponent.id;
-    jsonComponent.values = [];
-    jsonComponent.units = [];
-    const componentInputs = designSpaceComponent.getElementsByTagName("input");
-    const componentUnits = designSpaceComponent.getElementsByTagName("select");
-    for (let i = 0; i < componentInputs.length; i++) {
-      jsonComponent.values.push(componentInputs[i].value);
-      jsonComponent.units.push(componentUnits[i].value);
-    }
+//   function addDesignSpaceComponent(designSpaceComponent) {
+//     let jsonComponent = {};
+//     jsonComponent.id = designSpaceComponent.id;
+//     jsonComponent.values = [];
+//     jsonComponent.units = [];
+//     const componentInputs = designSpaceComponent.getElementsByTagName("input");
+//     const componentUnits = designSpaceComponent.getElementsByTagName("select");
+//     for (let i = 0; i < componentInputs.length; i++) {
+//       jsonComponent.values.push(componentInputs[i].value);
+//       jsonComponent.units.push(componentUnits[i].value);
+//     }
 
-    return jsonComponent;
-  }
+//     return jsonComponent;
+//   }
 
-  function addDesignSpaceComponents() {
-    for (let i = 0; i < designSpaceComponents.length; i++) {
-      if (designSpaceComponents[i].classList.contains("buffer")) {
-        continue;
-      }
-      cktJson.components.unshift(
-        addDesignSpaceComponent(designSpaceComponents[i])
-      );
-    }
-  }
-  addDesignSpaceComponents();
+//   function addDesignSpaceComponents() {
+//     for (let i = 0; i < designSpaceComponents.length; i++) {
+//       if (designSpaceComponents[i].classList.contains("buffer")) {
+//         continue;
+//       }
+//       cktJson.components.unshift(
+//         addDesignSpaceComponent(designSpaceComponents[i])
+//       );
+//     }
+//   }
+//   addDesignSpaceComponents();
 
-  function addFrequencies() {
-    const frequencyBank = document.getElementById("frequencyBank");
-    const frequencyInputs = frequencyBank.getElementsByClassName("frequency");
-    const frequencyUnits = frequencyBank.getElementsByClassName("units");
-    for (let i = 0; i < frequencyInputs.length; i++) {
-      const frequency = {};
-      frequency.value = frequencyInputs[i].value;
-      frequency.unit = frequencyUnits[i].value;
-      cktJson.frequencies.push(frequency);
-    }
-  }
-  addFrequencies();
-  return JSON.stringify(cktJson);
-}
+//   function addFrequencies() {
+//     const frequencyBank = document.getElementById("frequencyBank");
+//     const frequencyInputs = frequencyBank.getElementsByClassName("frequency");
+//     const frequencyUnits = frequencyBank.getElementsByClassName("units");
+//     for (let i = 0; i < frequencyInputs.length; i++) {
+//       const frequency = {};
+//       frequency.value = frequencyInputs[i].value;
+//       frequency.unit = frequencyUnits[i].value;
+//       cktJson.frequencies.push(frequency);
+//     }
+//   }
+//   addFrequencies();
+//   return JSON.stringify(cktJson);
+// }
 
-function saveCktData() {
-  const jsonDataBody = document.getElementById("id_jsonData");
-  jsonDataBody.value = generateCktJson();
-}
-document.getElementById("saveCircuit").addEventListener("click", () => {
-  saveCktData();
-});
+// function saveCktData() {
+//   const jsonDataBody = document.getElementById("id_jsonData");
+//   jsonDataBody.value = generateCktJson();
+// }
+// document.getElementById("saveCircuit").addEventListener("click", () => {
+//   saveCktData();
+// });
 
 //#endregion =================================================================================================
 
