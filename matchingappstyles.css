@@ -1,0 +1,183 @@
+/*#region ========================Form======================================== */
+.site-form {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin-top: 0;
+  padding: 0;
+}
+
+.site-form {
+  border: none;
+  display: flex;
+  align-items: center;
+}
+.site-form input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px;
+
+  background-color: rgb(239, 239, 239);
+  color: black;
+  padding-left: 6px;
+  padding-right: 6px;
+  font-family: "Times New Roman", Times, serif;
+  margin: 0;
+  margin-right: 1ch;
+  border: 1px solid;
+  border-radius: 2px;
+
+  /* border-radius: 0px; */
+  border-color: rgb(118, 118, 118);
+}
+
+#id_title {
+  margin: 0;
+
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.site-form input {
+  height: fit-content;
+  font-size: 18px;
+}
+/*#endregion  */
+
+/* #region =======================Smith Chart================================= */
+.flexbox-item-smithchart-container {
+  display: flex;
+  resize: horizontal;
+  overflow: hidden;
+}
+
+.flexbox-item-smithchart {
+  align-self: flex-start;
+  justify-content: top;
+  overflow: scroll;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+.matchingWrapper {
+  max-width: 960px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+/* #endregion */
+
+/* #region =======================Frequency Handling=========================== */
+#frequencyHeader {
+  margin-top: 40px;
+  display: inline-block;
+  display: flex;
+}
+#frequencyBank button,
+#frequencyHeader button {
+  /* background-color: aliceblue; */
+  font-size: 18px;
+  margin-left: 10px;
+  /* margin-bottom: 10px; */
+  text-align: left;
+  margin-right: 2ch;
+  color: black;
+  height: fit-content;
+}
+#frequencyBank p,
+#frequencyBank pre {
+  white-space: pre;
+  display: inline;
+  /* margin-left: 2ch; */
+  font-size: 20px;
+}
+#frequencyBank select {
+  font-size: 18px;
+}
+#frequencyBank input {
+  margin-right: 1ch;
+  font-size: 18px;
+  width: 15ch;
+}
+#frequencyHeader h2 {
+  display: inline;
+}
+
+/* #endregion  */
+
+/* #region =======================Work Space=================================== */
+#designSpaceScrollBar {
+  overflow-x: auto; /* Creates horizontal scroll bar */
+  white-space: nowrap; /* Creates horizontal scroll bar */
+  max-width: 100vh;
+}
+#designSpace {
+  margin-top: 10px;
+}
+#designSpace div {
+  white-space: normal;
+}
+#designSpace input {
+  text-align: center;
+  font-size: 18px;
+  border-radius: 4px;
+  border: none;
+  height: 21px;
+  text-overflow: clip;
+}
+#designSpace select {
+  margin: 2px;
+  display: "inline";
+  appearance: none;
+  text-align: center;
+  font-size: 18px;
+  height: 22px;
+}
+#designSpace button {
+  display: "inline";
+  align-items: center;
+  color: black;
+  font-size: 18px;
+}
+.components canvas {
+  background-color: white;
+  user-select: none;
+  margin-bottom: 10px;
+}
+#componentBank {
+  user-select: none;
+  -moz-user-select: none;
+  margin-top: 4vh;
+}
+/* #endregion  */
+
+/* #region =======================Mixed========================================*/
+body {
+  margin: 0;
+}
+.flexbox-container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  margin-right: 50px;
+}
+.flexbox-item-design {
+  min-width: 0;
+}
+select {
+  height: 21px;
+  border: 0;
+  margin: 1px;
+  border-radius: 2px;
+}
+
+.container #frequencyBank,
+.container #componentBank {
+  padding: 1rem; /*1 rem is the font size of the html element*/
+  margin-top: 2rem;
+}
+.container div {
+  vertical-align: top;
+  display: inline-block;
+  text-align: left;
+}
+/* #endregion*/

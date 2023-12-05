@@ -1,0 +1,20 @@
+{% extends 'base_layout.html' %}
+<!-- Add smith chart image with javascript to get coordinates -->
+{% load static %} {% block content2 %}
+<!-- This tag directs the below html code to be inserted in the 'content' block specified in the base html file -->
+<link rel="stylesheet" href="{% static 'circuitliststyles.css' %}">
+<h1>Circuit List</h1>
+
+    <div class = "circuits">
+        {% for circuit in circuits %}
+        <!-- slug=circuits.slug -->
+        <div class="circuit"><a href="{% url 'matching_app:savedckt' id=circuit.id %}">{{circuit.title}}</a>
+        <p>{{circuit.date}}</p>
+        <p>{{circuit.cktparams}}</p>
+        <!-- <p>{{circuit.cktparams}}</p> -->
+        </div>
+        {% endfor %}
+    </div>
+
+ {% endblock %}
+</div>

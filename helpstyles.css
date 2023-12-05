@@ -1,0 +1,28 @@
+.iframe-container {
+  display: block;
+  margin: auto;
+  width: 60vw;
+  height: 34vw;
+  margin-top: 75px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.about-container {
+  display: block;
+  margin: auto;
+  width: 60vw;
+  margin-top: 75px;
+}
+h2 {
+  margin-top: 100px;
+  font-size: xx-large;
+  text-align: center;
+}
+p {
+  font-size: x-large;
+  text-align: center;
+}

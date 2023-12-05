@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Smith Match</title>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.js></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+
+
+  <body>
+
+
+    <!-- <a href="{% url 'home' %}">
+
+        </a> -->
+    <header class="wrapper">
+        <h1 id="title"><a href="matching_app.html">Smith Match</a></h1> 
+        <nav >
+        <ul>
+          <li><a href="matching_app.html">Matching App</a></li>
+<li><a href="./help.html">Help</a></li>
+
+
+        </ul>
+      </nav>
+    </header>
+    <div class="wrapper">
+    </div>
+
+  <link rel="stylesheet" href="./matchingappstyles.css" />
+  <script defer src="./coord.js"></script>
+  <div
+    style="display: none"
+    id="jsonCktData"
+    jsonData="{{ circuit.jsonData }}"
+  ></div>
+  <div class="flexbox-container flexbox-item-chart">
+    <div
+      class="flexbox-item flexbox-item-smithchart-container"
+      id="smithchartContainer"
+      style="width: 1000px"
+    >
+      <canvas
+        style="width: 1000px"
+        id="smithchart"
+        class="flexbox-item flexbox-item-smithchart"
+      ></canvas>
+    </div>
+
+    <div class="flexbox-item flexbox-item-design">
+      <div class="components">
+        <div class="container" id="componentBank">
+          <div id="seriesResistorBlock">
+            <canvas id="seriesResistor" draggable="false"></canvas>
+          </div>
+          <div id="shuntResistorBlock">
+            <canvas id="shuntResistor"></canvas>
+          </div>
+          <div id="seriesCapacitorBlock">
+            <canvas id="seriesCapacitor" draggable="false"></canvas>
+          </div>
+          <div id="shuntCapacitorBlock">
+            <canvas id="shuntCapacitor" draggable="false"></canvas>
+          </div>
+          <div id="seriesInductorBlock">
+            <canvas id="seriesInductor" draggable="false"></canvas>
+          </div>
+          <div id="shuntInductorBlock">
+            <canvas id="shuntInductor" draggable="false"></canvas>
+          </div>
+          <div id="transmissionLineBlock">
+            <canvas id="transmissionLine" draggable="false"></canvas>
+          </div>
+          <div id="openStubBlock">
+            <canvas id="openStub" draggable="false"></canvas>
+          </div>
+          <div id="shortStubBlock">
+            <canvas id="shortStub" draggable="false"></canvas>
+          </div>
+          <div id="loadBlock" style="display: none !important">
+            <canvas id="load" draggable="false"></canvas>
+          </div>
+          <div id="sourceBlock" style="display: none !important">
+            <canvas id="source" draggable="false"></canvas>
+          </div>
+        </div>
+        <div id="designSpaceScrollBar">
+          <div class="container" id="designSpace"></div>
+        </div>
+      </div>
+
+      <div class="container" id="frequencyHeader">
+        <h2>Options:</h2>
+        <button id="add">Add Frequency</button>
+        <button id="showReflections">Show Reflections</button>
+
+        <form
+          class="site-form"
+          action=""
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input type="submit" name="save-circuit" value="Save Circuit" id="saveCircuit" />
+          <input type="submit" name="update-circuit" value="Update Circuit" id="updateCircuit" />
+        </form>
+
+        <div style="display: none !important">
+          <input
+            name="frequency"
+            type="text"
+            value="10"
+            id="addFrequencyInput"
+          />
+          <button id="delete">Delete</button>
+          <select id="frequencyDropDown">
+            <option value="1e9">GHz</option>
+            <option value="1e6">MHz</option>
+            <option value="1e3">kHz</option>
+          </select>
+        </div>
+      </div>
+      <br />
+      <div class="container" id="frequencyBank"></div>
+    </div>
+  </div>
+  <canvas id="reflectionChart" width="400" height="225"></canvas>
+  <script src="/static/slugify.js"></script>
+  </body>
+</html>
