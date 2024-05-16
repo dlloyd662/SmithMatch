@@ -329,8 +329,6 @@ function updateComponentArray() {
   for (let i = 0; i < components.length; i++) {
     componentArray[i] = components[i];
   }
-  // componentArray.shift(); //Removes first element
-  // componentArray.pop(); //Removes last element
   componentArray.reverse();
   rfLogic();
 }
@@ -590,8 +588,6 @@ function drawSeriesCapacitor() {
   const capacitorCanvas = document.getElementById("seriesCapacitor");
   sizeComponent("seriesCapacitor");
   const ctx = capacitorCanvas.getContext("2d");
-  // ctx.strokeStyle = "black";
-  // ctx.lineWidth = 10;
   ctx.beginPath();
   ctx.lineWidth = 2.5;
   ctx.moveTo(0, componentCenterY);
@@ -615,15 +611,12 @@ function drawSeriesCapacitor() {
   ctx.moveTo((componentW * 5) / 9, componentCenterY);
   ctx.lineTo(componentW, componentCenterY);
   ctx.stroke();
-  // ctx.lineTo((componentW * 10) / 10, componentCenterY);
 }
 
 function drawShuntCapacitor() {
   const capacitorCanvas = document.getElementById("shuntCapacitor");
   sizeComponent("shuntCapacitor");
   const ctx = capacitorCanvas.getContext("2d");
-  // ctx.strokeStyle = "black";
-  // ctx.lineWidth = 10;
   ctx.beginPath();
   ctx.lineWidth = 2.5;
   drawTee(ctx);
@@ -685,7 +678,6 @@ function drawSeriesInductor() {
   ctx.moveTo(componentW - 2 * indRad, componentCenterY);
   ctx.lineTo(componentW, componentCenterY);
   ctx.stroke();
-  // ctx.lineTo((componentW * 10) / 10, componentCenterY);
 }
 
 function drawShuntInductor() {
@@ -732,8 +724,6 @@ function drawTransmissionLine() {
   const transmissionLineCanvas = document.getElementById("transmissionLine");
   sizeComponent("transmissionLine");
   const ctxt = transmissionLineCanvas.getContext("2d");
-  // ctx.strokeStyle = "black";
-  // ctx.lineWidth = 10;
   ctxt.beginPath();
   ctxt.lineWidth = 2.5;
   ctxt.moveTo(0, componentCenterY);
@@ -742,15 +732,12 @@ function drawTransmissionLine() {
   ctxt.moveTo(componentW / 4 + tLineL, componentCenterY);
   ctxt.lineTo(componentW, componentCenterY);
   ctxt.stroke();
-  // ctx.lineTo((componentW * 10) / 10, componentCenterY);
 }
 
 function drawOpenStub() {
   const openStubCanvas = document.getElementById("openStub");
   sizeComponent("openStub");
   const ctx = openStubCanvas.getContext("2d");
-  // ctxoc.strokeStyle = "black";
-  // ctxoc.lineWidth = 10;
   ctx.beginPath();
   ctx.lineWidth = 2.5;
   drawTee(ctx);
@@ -782,8 +769,6 @@ function drawShortStub() {
   sizeComponent("shortStub");
 
   const ctx = shortStubCanvas.getContext("2d");
-  // ctxoc.strokeStyle = "black";
-  // ctxoc.lineWidth = 10;
   ctx.beginPath();
   ctx.lineWidth = 2.5;
   drawTee(ctx);
@@ -817,8 +802,6 @@ function drawLoad() {
   sizeComponent("load");
 
   const ctx = shortStubCanvas.getContext("2d");
-  // ctxoc.strokeStyle = "black";
-  // ctxoc.lineWidth = 10;
   ctx.beginPath();
   ctx.lineWidth = 2.5;
   drawL(ctx);
@@ -843,7 +826,6 @@ function drawLoad() {
     componentCenterY + (groundY - componentCenterY) / 2 + tLineL / 2
   );
   ctx.lineTo(componentCenterX, groundY);
-  // drawGround(ctx);
   ctx.fill();
 }
 const sourceRadius = componentW / 5; //Radius of circle enclosing AC source symbol
@@ -852,8 +834,6 @@ function drawSource() {
   const sourceCanvas = document.getElementById("source");
   sizeComponent("source");
   const ctx = sourceCanvas.getContext("2d");
-  // ctx.strokeStyle = "black";
-  // ctx.lineWidth = 10;
   ctx.beginPath();
   ctx.lineWidth = 2.5;
   ctx.moveTo(componentCenterX + sourceRadius, componentCenterY);
@@ -887,7 +867,6 @@ function drawSource() {
   ctx.moveTo(componentCenterX + sourceRadius, componentCenterY);
   ctx.lineTo(componentW, componentCenterY);
   ctx.stroke();
-  // ctx.lineTo((componentW * 10) / 10, componentCenterY);
 }
 function draw() {
   drawShortStub();
@@ -933,7 +912,6 @@ function cloneCanvas(oldCanvas) {
 //return valueUnitPair[1][i][0] for unit and valueUnitPair[1][i][1] for scale
 function addInputField(div) {
   const inputTextFieldWidth = componentW * 0.49; //Sets the input field to slightly narrower than the canvas element width
-  const inputTextFieldHeight = "18px";
   let i = 0;
 
   div.componentObject.inputFieldsArray().forEach((valueUnitPair) => {
@@ -975,7 +953,6 @@ function addInputField(div) {
     div.getElementsByTagName("button")[0].style.position = "relative";
     div.getElementsByTagName("button")[0].style.left = "0%";
   }
-  // div.getElementsByTagName("button")[i].style.width = String(7) + "ch";
 }
 //Array of defualt components for use in getComponentObject
 const defaultComponentsArray = [
@@ -1105,7 +1082,6 @@ function addBuffer() {
 addBuffer();
 addBuffer();
 function addSource() {
-  // designSpace.insertBefore(loadBlock, designSpaceComponents.lastChild);
   copyComponentToDesignSpace(sourceBlock);
   designSpaceComponents.firstChild.draggable = false;
   document
@@ -1189,7 +1165,6 @@ function smithOutline() {
   );
   ctx.stroke();
   //Bottom of circle should be at 1/2 height. (ycenter+radius = 1/2 height)
-  // ycenter=1/2height-radius
   ctx.beginPath();
   ctx.moveTo(smithLeftEdge, centerY);
   ctx.lineTo(smithRightEdge, centerY);
@@ -1323,11 +1298,7 @@ function conductanceCircles(rad) {
 function drawSmith() {
   smithOutline();
   reactanceArcs(arcRad);
-  // admittanceArcs(arcRad);
   resistanceCircles(circRad);
-
-  // admittanceArcs(arcRad);
-  // conductanceCircles(circRad);
 }
 
 drawSmith();
@@ -1340,10 +1311,7 @@ let gamma_rad = 0;
 let gamma_mag = 0;
 
 //Changed from below code to reference center instead of top left corner
-//x = element.offsetLeft;
-//y = element.offsetTop;
 function getXY(element) {
-  const boundaryScale = element.clientWidth / boundaryRadius;
   x = element.offsetLeft + element.clientWidth / 2; // set x to element’s offsetLeft
   y = element.offsetTop + element.clientHeight / 2; // set y to element’s offsetTop
   element = element.offsetParent; // set element to its offsetParent
@@ -1507,7 +1475,6 @@ function drawArc(currentComponent, lastComponent) {
 
   const width = document.getElementById("smithchart").width;
   const height = document.getElementById("smithchart").height;
-
   const xc = -B / (2 * A); //X coordinate of the center of the constant resistance/admittance arc (Relative to center of smith chart)
   const yc = -C / (2 * A); //Y coordinate of the center of the constant resistance/admittance arc(Relative to center of smith chart)
 
@@ -1600,15 +1567,6 @@ function drawArc(currentComponent, lastComponent) {
     startAngle = -lastComponentAngle;
     endAngle = startAngle - relativeAngle;
 
-    // ctx.beginPath();
-    // ctx.arc(
-    //   xZeroTopLeft,
-    //   yZeroTopLeft,
-    //   r,
-    //   startAngle,
-    //   endAngle,
-    //   counterClockwise
-    // );
     ctx.beginPath();
     ctx.arc(xcTopLeft, ycTopLeft, r, startAngle, endAngle, counterClockwise);
     ctx.stroke();
@@ -1622,11 +1580,9 @@ function drawArc(currentComponent, lastComponent) {
     const d2 = math.sqrt((x2 - xInner) ** 2 + y2 ** 2); //Distance between p1 and p3
     const d3 = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5; //Distance between p1 and p2
 
-    let arcAngle = 0;
     let startAngle = 0;
     let endAngle = 0;
 
-    // const unscaledStartAngle = y1Sign * 2 * Math.asin(d1 / (2 * r)); //Angle between the inner x intercept and first component point
     const lastComponentAngle = y1Sign * 2 * Math.asin(d1 / (2 * r)); //Since d1 and r are both positive y1Sign is used to give the angle a sign
     const currentComponentAngle = y2Sign * 2 * Math.asin(d2 / (2 * r)); //Since d2 and r are both positive y1Sign is used to give the angle a sign
     const relativeAngle = currentComponentAngle - lastComponentAngle; //Obtaining the relative able by adding the current and last component values prevents issues that arise when the angle between two points is greater than 180 degrees (asin is only defined up to 180 deg). This is not an issue with this calculation since  currentComponentAngle and lastComponentAngle have a maximum of 180deg
@@ -1727,10 +1683,8 @@ function update(component) {
     let closer = false;
     let originalValue = parseFloat(field.value);
     field.value = originalValue + incrementStep; //Increment up
-    // field.value = originalValue * (1 + incrementScale); //Increment up
 
     updateComponentArraysLoop();
-    // updateComponentArray();
     incUpDist = calcDistance();
     if (incUpDist < originalDist && parseFloat(field.value) < maxValue) {
       closer = true;
@@ -1743,15 +1697,12 @@ function update(component) {
     let closer = false;
     let originalValue = parseFloat(field.value);
     field.value = originalValue - incrementStep; //Increment up
-    // field.value = originalValue * (1 - incrementScale); //Increment down
-    // updateComponentArray();
     updateComponentArraysLoop();
     incDownDist = calcDistance();
     if ((incDownDist < originalDist) & (parseFloat(field.value) > minValue)) {
       closer = true;
     }
     field.value = originalValue;
-    // updateComponentArray();
     updateComponentArraysLoop();
     return closer;
   }
@@ -1759,8 +1710,6 @@ function update(component) {
   function incrementUp() {
     let originalValue = parseFloat(field.value);
     field.value = parseFloat(field.value) + incrementStep; //Increment up
-    // field.value = originalValue * (1 + incrementScale); //Increment up
-    // updateComponentArraysLoop();
     updateComponentArray();
     incUpDist = calcDistance();
     deltaIncDist = originalDist - incUpDist;
@@ -1772,8 +1721,6 @@ function update(component) {
   function incrementDown() {
     let originalValue = parseFloat(field.value);
     field.value = parseFloat(field.value) - incrementStep; //Increment down
-    // field.value = originalValue * (1 - incrementScale); //Increment down
-    // updateComponentArraysLoop();
     updateComponentArray();
     incDownDist = calcDistance();
     deltaIncDist = originalDist - incDownDist;
@@ -2036,11 +1983,6 @@ function tparToSpar(ntwk_tpar) {
   const s21 = math.divide(1, ntwk_t22);
   const s22 = math.divide(math.unaryMinus(ntwk_t21), ntwk_t22);
 
-  // const s11 = ntwk_t12 / ntwk_t22;
-  // const s12 = ntwk_t11 - (ntwk_t12 * ntwk_t21) / ntwk_t22;
-  // const s21 = 1 / ntwk_t22;
-  // const s22 = -ntwk_t21 / ntwk_t22;
-
   const spar = [
     [s11, s12],
     [s21, s22],
@@ -2063,12 +2005,6 @@ function sparToTPar(twoPortNetwork) {
   twoPortNetwork.t12[frequencyIndex] = math.divide(s11, s21);
   twoPortNetwork.t21[frequencyIndex] = math.divide(math.multiply(-1, s22), s21);
   twoPortNetwork.t22[frequencyIndex] = math.divide(1, s21);
-
-  //Original
-  // twoPortNetwork.t11 = -math.det(spar) / s21;
-  // twoPortNetwork.t12 = s11 / s21;
-  // twoPortNetwork.t21 = -s22 / s21;
-  // twoPortNetwork.t22 = 1 / s21;
 
   twoPortNetwork.tpar[frequencyIndex] = [
     [twoPortNetwork.t11[frequencyIndex], twoPortNetwork.t12[frequencyIndex]],
@@ -2311,17 +2247,14 @@ function rfLogic() {
           math.multiply(2, math.pow(math.multiply(z1, z2), 0.5)),
           ds
         );
-        // component.s12[frequencyIndex]= (2 * (z1 * z2) ** 0.5) / ds;
         component.s21[frequencyIndex] = math.divide(
           math.multiply(2, math.pow(math.multiply(z1, z2), 0.5)),
           ds
         );
-        // component.s21[frequencyIndex] = (2 * (z1 * z2) ** 0.5) / ds;
         component.s22[frequencyIndex] = math.divide(
           math.add(z, z1, math.unaryMinus(z2)),
           ds
         );
-        // component.s22[frequencyIndex]= (z + z1 - z2) / ds;
         component.spar[frequencyIndex] = [
           [component.s11[frequencyIndex], component.s12[frequencyIndex]],
           [component.s21[frequencyIndex], component.s22[frequencyIndex]],
@@ -2401,7 +2334,6 @@ function rfLogic() {
     plotPoints(componentArray);
 
     //cktX and cktY denote the XY coordinates (measured from the center of the smith chart) of each point on the circuit. For use in point dragging and selecting
-    // if (componentArray.length > 4) {
     for (let i = 1; i <= componentArray.length - 2; i++) {
       drawArc(componentArray[i + 1], componentArray[i]);
 
@@ -2410,7 +2342,6 @@ function rfLogic() {
       componentArray[i].cktY[frequencyIndex] =
         componentArray[i].cktS11[frequencyIndex].im * boundaryRadius;
     }
-    // }
     if (!iterating) {
       displayS11(frequencyIndex);
     }
@@ -2494,132 +2425,6 @@ document
 //#endregion ===========================================================================================
 
 //#region ========================================Load/Save Circuit===========================================
-// let jsonData = "";
-// function loadCktFromDataBase() {
-//   const HTMLJsonData = document
-//     .getElementById("jsonCktData")
-//     .getAttribute("jsonData");
-//   if (!HTMLJsonData) {
-//     return;
-//   }
-//   const jsonData = JSON.parse(HTMLJsonData);
-
-//   loadCkt(jsonData);
-// }
-
-// function loadCkt(json) {
-//   if (typeof json == "string") {
-//     jsonData = JSON.parse(jsonData);
-//   }
-//   const components = json.components;
-//   const frequencies = json.frequencies;
-
-//   function loadComponent(component) {
-//     let designSpaceComponent = 0;
-//     if (component.id == "sourceBlock") {
-//       designSpaceComponent = document.getElementById("designSpace").firstChild;
-//     } else if (component.id == "loadBlock") {
-//       designSpaceComponent = document.getElementById("designSpace").lastChild;
-//     } else {
-//       copyComponentToDesignSpace(componentBankDict.get(component.id));
-//       designSpaceComponent = document.getElementById("designSpace").children[2];
-//     }
-//     const designSpaceInputs =
-//       designSpaceComponent.getElementsByTagName("input");
-//     for (let i = 0; i < designSpaceInputs.length; i++) {
-//       const designSpaceInput = designSpaceInputs[i];
-//       designSpaceInput.value = component.values[i];
-//     }
-//     const designSpaceUnits =
-//       designSpaceComponent.getElementsByTagName("select");
-//     for (let i = 0; i < designSpaceInputs.length; i++) {
-//       const designSpaceUnit = designSpaceUnits[i];
-//       designSpaceUnit.value = component.units[i];
-//     }
-//   }
-//   function loadComponents(components) {
-//     for (let i = 0; i < components.length; i++) {
-//       loadComponent(components[i]);
-//     }
-//   }
-//   loadComponents(components);
-//   function loadFrequencies() {
-//     const savedFrequencies = json.frequencies;
-//     const frequencyBank = document.getElementById("frequencyBank");
-//     frequencyBank.innerHTML = "";
-
-//     for (let i = 0; i < savedFrequencies.length; i++) {
-//       addFrequency();
-//       const frequencyBankInput =
-//         frequencyBank.getElementsByClassName("frequency")[i];
-//       const frequencyBankUnit =
-//         frequencyBank.getElementsByClassName("units")[i];
-//       frequencyBankInput.value = savedFrequencies[i].value;
-//       frequencyBankUnit.value = savedFrequencies[i].unit;
-//       // console.log(savedFrequencies[i].value);
-//     }
-//   }
-//   loadFrequencies();
-//   refresh();
-// }
-
-// function generateCktJson() {
-//   const designSpaceComponents = document.getElementById("designSpace").children;
-//   let cktJson = {};
-//   let components = [];
-//   let frequencies = [];
-//   cktJson.components = components;
-//   cktJson.frequencies = frequencies;
-
-//   function addDesignSpaceComponent(designSpaceComponent) {
-//     let jsonComponent = {};
-//     jsonComponent.id = designSpaceComponent.id;
-//     jsonComponent.values = [];
-//     jsonComponent.units = [];
-//     const componentInputs = designSpaceComponent.getElementsByTagName("input");
-//     const componentUnits = designSpaceComponent.getElementsByTagName("select");
-//     for (let i = 0; i < componentInputs.length; i++) {
-//       jsonComponent.values.push(componentInputs[i].value);
-//       jsonComponent.units.push(componentUnits[i].value);
-//     }
-
-//     return jsonComponent;
-//   }
-
-//   function addDesignSpaceComponents() {
-//     for (let i = 0; i < designSpaceComponents.length; i++) {
-//       if (designSpaceComponents[i].classList.contains("buffer")) {
-//         continue;
-//       }
-//       cktJson.components.unshift(
-//         addDesignSpaceComponent(designSpaceComponents[i])
-//       );
-//     }
-//   }
-//   addDesignSpaceComponents();
-
-//   function addFrequencies() {
-//     const frequencyBank = document.getElementById("frequencyBank");
-//     const frequencyInputs = frequencyBank.getElementsByClassName("frequency");
-//     const frequencyUnits = frequencyBank.getElementsByClassName("units");
-//     for (let i = 0; i < frequencyInputs.length; i++) {
-//       const frequency = {};
-//       frequency.value = frequencyInputs[i].value;
-//       frequency.unit = frequencyUnits[i].value;
-//       cktJson.frequencies.push(frequency);
-//     }
-//   }
-//   addFrequencies();
-//   return JSON.stringify(cktJson);
-// }
-
-// function saveCktData() {
-//   const jsonDataBody = document.getElementById("id_jsonData");
-//   jsonDataBody.value = generateCktJson();
-// }
-// document.getElementById("saveCircuit").addEventListener("click", () => {
-//   saveCktData();
-// });
 
 //#endregion =================================================================================================
 
@@ -2664,7 +2469,7 @@ document.addEventListener("keyup", function (event) {
   updateComponentArraysLoop();
 });
 
-document.addEventListener("click", function (event) {
+document.addEventListener("click", function () {
   refresh();
   resize();
 });
